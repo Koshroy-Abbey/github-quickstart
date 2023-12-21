@@ -66,7 +66,7 @@ resource "abbey_grant_kit" "engineering_abbey_test_github_team" {
   output = {
     # Replace with your own path pointing to where you want your access changes to manifest.
     # Path is an RFC 3986 URI, such as `github://{organization}/{repo}/path/to/file.tf`.
-    location = "github://organization/repo/access.tf"
+    location = "github://Koshroy-Abbey/github-quickstart/access.tf"
     append = <<-EOT
       resource "github_team_membership" "gh_mem_{{ .user.github.username }}" {
         team_id = 1234567
