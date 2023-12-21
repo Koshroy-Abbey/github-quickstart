@@ -26,7 +26,7 @@ provider "abbey" {
 }
 
 provider "github" {
-  owner = "replace-me" #CHANGEME
+  owner = "Koshroy-Abbey" #CHANGEME
   token = var.token
 }
 
@@ -48,7 +48,7 @@ resource "abbey_grant_kit" "engineering_abbey_test_github_team" {
       {
         reviewers = {
           # Replace with your Abbey login, typically your email used to sign up.
-          one_of = ["replace-me@example.com"]
+          one_of = ["koushik@abbey.io"]
         }
       }
     ]
@@ -73,21 +73,11 @@ resource "abbey_grant_kit" "engineering_abbey_test_github_team" {
     # Path is an RFC 3986 URI, such as `github://{organization}/{repo}/path/to/file.tf`.
     location = "github://organization/repo/access.tf"
     append = <<-EOT
-      resource "github_team_membership" "gh_mem_{{ .data.system.abbey.identities.github.username }}" {
+      resource "github_team_membership" "gh_mem_{{ .user.github.username }}" {
         team_id = github_team.abbey_test_team.id
-        username = "{{ .data.system.abbey.identities.github.username }}"
+        username = "{{ .user.github.username }}"
         role = "member"
       }
     EOT
   }
-}
-
-resource "abbey_identity" "user_1" {
-  abbey_account = "replace-me@example.com"
-  source = "github"
-  metadata = jsonencode(
-    {
-      username = "replaceme" #CHANGEME
-    }
-  )
 }
