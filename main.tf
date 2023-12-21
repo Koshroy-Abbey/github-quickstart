@@ -30,11 +30,6 @@ provider "github" {
   token = var.token
 }
 
-resource "github_team" "abbey_test_team" {
-  name = "AbbeyTestTeam"
-  description = "This team is testing Abbey."
-}
-
 resource "abbey_grant_kit" "engineering_abbey_test_github_team" {
   name = "GitHub_Team_Abbey_Test"
   description = <<-EOT
@@ -74,7 +69,7 @@ resource "abbey_grant_kit" "engineering_abbey_test_github_team" {
     location = "github://organization/repo/access.tf"
     append = <<-EOT
       resource "github_team_membership" "gh_mem_{{ .user.github.username }}" {
-        team_id = github_team.abbey_test_team.id
+        team_id = 1234567
         username = "{{ .user.github.username }}"
         role = "member"
       }
