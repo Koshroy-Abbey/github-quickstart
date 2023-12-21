@@ -68,7 +68,7 @@ resource "abbey_grant_kit" "engineering_abbey_test_github_team" {
     # Path is an RFC 3986 URI, such as `github://{organization}/{repo}/path/to/file.tf`.
     location = "github://Koshroy-Abbey/github-quickstart/access.tf"
     append = <<-EOT
-      resource "github_team_membership" "gh_mem_{{ .user.github.username }}" # {{ .user.email }} {
+      resource "github_team_membership" "gh_mem_{{ .user.github.username }}" { # {{ .user.email }}
         team_id = 1234567
         username = "{{ .user.github.username }}"
         role = "member"
